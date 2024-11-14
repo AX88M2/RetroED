@@ -196,7 +196,7 @@ SceneEditorv5::SceneEditorv5(QWidget *parent) : QWidget(parent), ui(new Ui::Scen
 #else
             proc.setProgram(gamePath);
 #endif
-            proc.setWorkingDirectory(QFileInfo(dataPath).absolutePath());
+            proc.setWorkingDirectory(dataPath);
             proc.setArguments(args);
             proc.startDetached();
             proc.waitForStarted();
@@ -4105,18 +4105,26 @@ void SceneEditorv5::UnloadGameLinks()
 void SceneEditorv5::LoadGameLinks()
 {
     UnloadGameLinks();
-
-    QDirIterator it(gameLinkPath, QStringList() << "*", QDir::Files,
-                    QDirIterator::NoIteratorFlags);
-    while (it.hasNext()) {
-        QString filePath = it.next();
-
-        if (QLibrary::isLibrary(filePath)) {
+    if(!appConfig.gameLogicManager[ENGINE_v5].gameLogicPath.isEmpty()){
+        if (QLibrary::isLibrary(appConfig.gameLogicManager[ENGINE_v5].gameLogicPath)) {
             GameLink link;
             gameLinks.append(link);
-            gameLinks.last().LinkGameObjects(filePath);
+            gameLinks.last().LinkGameObjects(appConfig.gameLogicManager[ENGINE_v5].gameLogicPath);
+        }
+    }else{
+        QDirIterator it(gameLinkPath, QStringList() << "*", QDir::Files,
+                        QDirIterator::NoIteratorFlags);
+        while (it.hasNext()) {
+            QString filePath = it.next();
+
+            if (QLibrary::isLibrary(filePath)) {
+                GameLink link;
+                gameLinks.append(link);
+                gameLinks.last().LinkGameObjects(filePath);
+            }
         }
     }
+
 }
 
 void SceneEditorv5::InitGameLink()

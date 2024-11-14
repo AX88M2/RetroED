@@ -222,6 +222,22 @@ enum FunctionTableIDs {
     FunctionTable_NotifyCallback,
     FunctionTable_SetGameFinished,
     FunctionTable_StopAllSfx,
+    FunctionTable_GetSpriteAnimation,
+    FunctionTable_GetSpriteSurface,
+    FunctionTable_GetPaletteBank,
+    FunctionTable_GetActivePaletteBuffer,
+    FunctionTable_GetRGB32To16Buffer,
+    FunctionTable_GetBlendLookupTable,
+    FunctionTable_GetSubtractLookupTable,
+    FunctionTable_GetTintLookupTable,
+    FunctionTable_GetMaskColor,
+    FunctionTable_GetScanEdgeBuffer,
+    FunctionTable_GetCamera,
+    FunctionTable_GetShader,
+    FunctionTable_GetModel,
+    FunctionTable_GetScene3D,
+    FunctionTable_GetSfxEntry,
+    FunctionTable_GetChannel,
     FunctionTable_Count,
 };
 
@@ -554,6 +570,22 @@ void InitFunctionTables()
     ADD_RSDK_FUNCTION(FunctionTable_NotifyCallback, BlankFunction);
     ADD_RSDK_FUNCTION(FunctionTable_SetGameFinished, BlankFunction);
 
+    ADD_RSDK_FUNCTION(FunctionTable_GetSpriteAnimation, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetSpriteSurface, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetPaletteBank, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetActivePaletteBuffer, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetRGB32To16Buffer, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetBlendLookupTable, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetSubtractLookupTable, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetTintLookupTable, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetMaskColor, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetScanEdgeBuffer, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetCamera, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetShader, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetModel, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetScene3D, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetSfxEntry, BlankFunction);
+    ADD_RSDK_FUNCTION(FunctionTable_GetChannel, BlankFunction);
 
     // ============================
     // API Function Table

@@ -18,6 +18,9 @@ void AppConfig::read(Reader &reader)
     if (!reader.isEOF()) {
         for (int v = 0; v <= ENGINE_v1; ++v) {
             gameManager[v].read(reader);
+            if(v == ENGINE_v5){
+                gameLogicManager[v].read(reader);
+            }
             baseDataManager[v].read(reader);
         };
     }
@@ -45,6 +48,9 @@ void AppConfig::write(Writer &writer)
 
     for (int v = 0; v <= ENGINE_v1; ++v) {
         gameManager[v].write(writer);
+        if(v == ENGINE_v5){
+            gameLogicManager[v].write(writer);
+        }
         baseDataManager[v].write(writer);
     };
     writer.write((byte)lightMode);
@@ -103,6 +109,10 @@ void AppConfig::RecentFileInfo::write(Writer &writer)
 void AppConfig::GameManagerInfo::read(Reader &reader) { exePath = reader.readString(); }
 
 void AppConfig::GameManagerInfo::write(Writer &writer) { writer.write(exePath); }
+
+void AppConfig::GameLogicInfo::read(Reader &reader) { gameLogicPath = reader.readString(); }
+
+void AppConfig::GameLogicInfo::write(Writer &writer) { writer.write(gameLogicPath); }
 
 void AppConfig::BaseDataFolderInfo::read(Reader &reader) { dataPath = reader.readString(); }
 
